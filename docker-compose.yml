@@ -1,0 +1,18 @@
+version: '3.9'
+
+networks:
+  eventos.network:
+    driver: bridge
+
+services:
+  webserver:
+    build: ./docker
+    container_name: eventos.webserver
+    tty: true
+    volumes:
+      - ./:/app
+    networks:
+      - eventos.network
+    ports:
+      - "80:80"
+      - "443:443"
