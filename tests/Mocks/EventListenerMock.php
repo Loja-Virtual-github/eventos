@@ -7,16 +7,10 @@ use LojaVirtual\Eventos\EventListener;
 
 class EventListenerMock extends EventListener
 {
-    const EVENT_NAME = 'example.mock';
-
     /**
-     * @param EventInterface $event
-     * @return bool
+     * @var string
      */
-    public function know(EventInterface $event)
-    {
-        return ($event->name() === $this->eventName());
-    }
+    protected $event_name = 'example.mock';
 
     /**
      * @param EventInterface $event
@@ -25,15 +19,5 @@ class EventListenerMock extends EventListener
     public function dispatch(EventInterface $event)
     {
         echo sprintf("Event %s was dispatched.", $event->name());
-    }
-
-    /**
-     * Returns the event name
-     *
-     * @return string
-     */
-    public function eventName()
-    {
-        return self::EVENT_NAME;
     }
 }

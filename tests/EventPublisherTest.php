@@ -37,6 +37,5 @@ class EventPublisherTest extends BaseTesting
             'Event example.mock was dispatched.',
             $result
         );
-
     }
 }

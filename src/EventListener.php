@@ -5,6 +5,11 @@ namespace LojaVirtual\Eventos;
 abstract class EventListener
 {
     /**
+     * @var string
+     */
+    protected $event_name = '';
+
+    /**
      * Process an event
      *
      * @param EventInterface $event
@@ -23,7 +28,20 @@ abstract class EventListener
      * @param EventInterface $event
      * @return mixed
      */
-    abstract public function know(EventInterface $event);
+    public function know(EventInterface $event)
+    {
+        return ($event->name() === $this->eventName());
+    }
+
+    /**
+     * Return the event name that this Listener can deal with
+     *
+     * @return string
+     */
+    public function eventName()
+    {
+        return $this->event_name;
+    }
 
     /**
      * Dispatch an event
@@ -32,11 +50,4 @@ abstract class EventListener
      * @return mixed
      */
     abstract public function dispatch(EventInterface $event);
-
-    /**
-     * Return the event name that this Listener can deal with
-     *
-     * @return string
-     */
-    abstract public function eventName();
 }
